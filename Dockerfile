@@ -8,17 +8,17 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Instala las dependencias necesarias
-RUN apt-get update \
-  apt-get install -y composer
+RUN apt-get install -y unzip
+RUN apt-get install -y git
 
 # Copia la configuración de Apache para Laravel
-#COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Habilita el módulo rewrite de Apache
-#RUN a2enmod rewrite
+RUN a2enmod rewrite
 
 # Instala las dependencias de Composer
-#COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.9 /usr/bin/composer /usr/bin/composer
 #RUN rm composer.lock
 RUN composer install
 
