@@ -1,5 +1,5 @@
 # Utiliza la imagen oficial de PHP con Apache como base
-FROM php:8.1-apache
+FROM php:8.1-fpm
 
 # Copia los archivos de la aplicación en la imagen
 COPY . /var/www/html
@@ -8,7 +8,8 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Instala las dependencias necesarias
-RUN apt-get update && apt-get install -y composer
+RUN apt-get update \
+  apt-get install -y composer
 
 # Copia la configuración de Apache para Laravel
 #COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
