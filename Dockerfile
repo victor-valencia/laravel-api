@@ -8,30 +8,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Instala las dependencias necesarias
-#RUN apt-get update && apt-get install -y \
-#     libonig-dev \
-#     libzip-dev \
-#     unzip \
-#     nano \
-#     && docker-php-ext-install zip \
-#     && docker-php-ext-enable zip \
-#     && docker-php-ext-install pdo_mysql \
-#     && docker-php-ext-install mbstring \
-#     && docker-php-ext-install gd
-
-RUN apt-get update
-RUN apt-get install -y libonig-dev
-RUN apt-get install -y libzip-dev
-RUN apt-get install -y libpng-dev
-RUN apt-get install -y libicu-dev
-RUN apt-get install -y unzip
-RUN apt-get install -y nano
-RUN docker-php-ext-install zip
-RUN docker-php-ext-enable zip
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install gd
-RUN docker-php-ext-install intl
+RUN apt-get update && apt-get install -y composer
 
 # Copia la configuración de Apache para Laravel
 #COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
