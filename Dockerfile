@@ -8,6 +8,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 # Instala las dependencias necesarias
+RUN apt-get update
 RUN apt-get install -y unzip
 RUN apt-get install -y git
 
