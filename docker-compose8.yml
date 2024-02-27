@@ -7,7 +7,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile8
     image: my-laravel-app
     container_name: app
     restart: unless-stopped
