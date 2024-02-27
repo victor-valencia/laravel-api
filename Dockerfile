@@ -38,8 +38,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-# Copy existing application directory contents
-COPY . /var/www
+# Obtiene composer usando multi-stage build
+COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
+
+# Copia los archivos de tu aplicación Laravel al contenedor
+COPY . /var/www/html
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
