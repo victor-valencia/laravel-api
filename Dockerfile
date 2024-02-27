@@ -42,7 +42,7 @@ RUN docker-php-ext-install gd
 ENV COMPOSER_ALLOW_SUPERUSER 1
 # Obtiene composer usando multi-stage build
 COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
-RUN composer install
+#RUN composer install
 
 # Copia los archivos de tu aplicación Laravel al contenedor
 COPY . /var/www/html
