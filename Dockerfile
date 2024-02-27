@@ -56,7 +56,7 @@ COPY . /var/www/html
 COPY .env.example .env
 
 # Genera la clave de la aplicación
-RUN php artisan key:generate
+#RUN php artisan key:generate
 
 # Change current user to www
 #USER www
