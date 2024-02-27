@@ -32,7 +32,7 @@ services:
     volumes:
       #- ./:/var/www
       #- ./nginx/:/etc/nginx/conf.d/
-      - ./src:/usr/share/nginx/html
+      - ./nginx:/usr/share/nginx/html
     networks:
       - app-network
 
