@@ -16,8 +16,14 @@ WORKDIR /var/www
 # Copy existing application directory
 COPY . .
 
+# Copy existing application directory permissions
+COPY --chown=www:www . /var/www
+
 # Install Laravel dependencies
 RUN composer install
+
+# Copia el archivo .env.example a .env
+COPY .env.example .env
 
 CMD ["php-fpm"]
 
