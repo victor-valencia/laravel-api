@@ -24,13 +24,13 @@ COPY --from=composer:2.1.9 /usr/bin/composer /usr/bin/composer
 RUN composer install
 
 # Copia el archivo .env.example a .env
-#COPY .env.example .env
+COPY .env.example .env
 
 # Genera la clave de la aplicación
-#RUN php artisan key:generate
+RUN php artisan key:generate
 
 # Da permisos recursicos a storage
-#RUN chmod 777 -R storage/*
+RUN chmod 777 -R storage/*
 
 # Expone el puerto 80 para la conexión externa
 EXPOSE 80 443
