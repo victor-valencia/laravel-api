@@ -18,7 +18,7 @@ RUN a2enmod ssl && a2enmod rewrite
 RUN mkdir -p /etc/apache2/ssl
 
 # Copia el archivo de configuración de Apache para SSL
-#COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Establece COMPOSER_ALLOW_SUPERUSER=1 para permitir la ejecución de Composer como superusuario
 ENV COMPOSER_ALLOW_SUPERUSER 1
