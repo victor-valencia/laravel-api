@@ -1,0 +1,33 @@
+# Usa una imagen base de PHP con Apache
+FROM php:8.0-apache
+
+# Instala las extensiones de PHP necesarias
+RUN apt-get update && apt-get install -y \
+    libonig-dev \
+    libzip-dev \
+    libpng-dev \
+    libicu-dev \
+    unzip \
+    nano
+
+RUN docker-php-ext-install pdo_mysql
+
+RUN docker-php-ext-install gd
+
+RUN a2enmod ssl && a2enmod rewrite
+RUN mkdir -p /etc/apache2/ssl
+
+# Copia el archivo de configuración de Apache para SSL
+#COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Establece COMPOSER_ALLOW_SUPERUSER=1 para permitir la ejecución de Composer como superusuario
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Obtiene composer usando multi-stage build
+COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
+
+# Copia los archivos de tu aplicación Laravel al contenedor
+COPY . /var/www/html
+
+#EXPOSE 443
+EXPOSE 80
