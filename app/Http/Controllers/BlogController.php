@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use PDF;
+use DNS1D;
 
 class BlogController extends Controller
 {
@@ -18,7 +20,7 @@ class BlogController extends Controller
         return [
             "status" => 1,
             "data" => $blogs
-        ];
+        ];        
     }
 
     /**
@@ -113,5 +115,16 @@ class BlogController extends Controller
             "data" => $blog,
             "msg" => "Blog deleted successfully"
         ];
+    }
+
+    public function reporte() 
+    {
+
+        $pdf = PDF::loadView('reporte', [
+            'title' => 'Códigos de Barras',
+        ])->setPaper('a4', 'portrait');
+
+        return $pdf->stream("Reporte X.pdf", array("Attachment" => false));
+        
     }
 }

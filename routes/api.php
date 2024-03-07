@@ -17,6 +17,8 @@ use App\Http\Controllers\BlogController;
 
 Route::resource('blogs', BlogController::class);
 
+Route::get('reporte', [BlogController::class, 'reporte']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
