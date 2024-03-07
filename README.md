@@ -3,8 +3,9 @@ Laravel - API
 ### Instalación
 - Clonar repositorio.
 
-- Dentro del proyecto:  
+- Dentro del proyecto: 
 **`docker-compose build`**
+**`docker-compose build --no-cache`**
 
 - Dentro del proyecto: Ejecutar Contenedores
 **`docker-compose up -d`**
